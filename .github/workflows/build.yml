@@ -1,0 +1,39 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Rename and Move File
+      run: |
+        mkdir packaged_files
+        cp -R dist packaged_files
+        mv packaged_files/dist/SimpleTheme.plugin packaged_files/SimpleTheme.plugin.zip
+        cd packaged_files
+        mv SimpleTheme.plugin.zip SimpleTheme.plugin
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: SimpleTheme Plugin
+        path: packaged_files/SimpleTheme.plugin
