@@ -1,45 +1,40 @@
-name: Build and Deploy
+name: Build and Release
 
 on:
   push:
     branches:
-      - main
+      - main  # 修改为你要触发的分支
 
 jobs:
-  build-deploy:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 14  # 修改为你需要的 Node.js 版本
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Archive Directory
-        run: zip -r SimpleTheme-$(( $(date +%s) / 86400 )).plugin dist/
-        
-      - name: Transfer Artifacts
+      - name: Upload entire project
         uses: actions/upload-artifact@v2
         with:
-          name: transferred-directory
-          path: SimpleTheme-$(( $(date +%s) / 86400 )).plugin
+          name: project
+          path: ./
 
-  release:
-    needs: build-deploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Archive dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
 
       - name: Create Release
         id: create_release
@@ -47,16 +42,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.run_number }}
-          release_name: ${{ github.run_number }}
-          body: ${{ github.event.head_commit.message }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Release ${{ github.ref }}
+          draft: false
+          prerelease: false
 
-      - name: Upload Release Asset
+      - name: Upload project artifact to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: SimpleTheme-$(( $(date +%s) / 86400 )).plugin
-          asset_name: SimpleTheme-$(( $(date +%s) / 86400 )).plugin
+          asset_path: ./
+          asset_name: project.zip
           asset_content_type: application/zip
