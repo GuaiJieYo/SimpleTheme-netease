@@ -1,0 +1,17 @@
+{
+    "manifest_version": 1,
+    "name": "SimpleTheme", 
+    "version": "0.0.1",
+    "author": "GuaiJie", 
+    "author_link": "https://github.com/guaijieyo",
+    "description": "一个简单轻量的主题",
+    "betterncm_version": ">=0.2.5",
+    "preview": "preview.png",
+    "injects": {
+        "Main": [ 
+            {
+                "file": "./main.js"
+            }
+        ]
+    }
+}

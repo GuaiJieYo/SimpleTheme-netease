@@ -1,0 +1,140 @@
+/* 隐藏列表 */
+[data-id="/m/podcast/"],
+.mv.j-flag,
+.j-friend-entrant,
+.look.j-flag,
+.fm.j-flag,
+.rdi.j-flag,
+.mix.j-flag,
+[data-nej-selector=__nThemePodcastContainer],
+[data-nej-selector*=__nProgram],
+[data-nej-selector*=__nRecMV],
+[data-nej-selector*=__nAudioBook],
+[data-nej-selector*=__nVoiceLive],
+[data-nej-selector*=__nExclusive],
+[data-nej-selector*=__nLive],
+[data-nej-selector*=__nNewSong],
+.m-adjustbar,
+.m-banner,
+.g-singlec-live,
+.u-micn-vip,
+.tovip,
+#newts_node,
+.s-theme-bgc1 .m-leftbox .m-tool .msg  .u-tip,
+#page_pc_home>a[data-nej-selector="__nLiveTit"],
+#page_pc_home>ul[data-nej-selector="__nLiveBox"],
+.u-dot,
+.itm.itm2.skin.j-flag.z-notip {
+    display: none !important;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* 上升 */
+.Up2Top {
+    opacity: 0;
+    transform: translateY(-100vh);
+    display: block !important;
+}
+
+/* 动画 */
+.g-sd,
+.g-mn,
+.g-ft,
+.user,
+.better-ncm-manager {
+    transition: all 0.3s ease-out !important;
+}
+
+.n-single {
+    max-height: none !important;
+}
+
+.n-single .wrap {
+    height: calc(100vh - 60px - 72px) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 标题栏 */
+.m-tabwrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* 文字阴影 */
+body {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 透明背景 */
+header,
+header::after,
+.m-tabwrap,
+#main-player,
+.g-single,
+.g-singlec-comment-detail,
+.g-singlec-comment-top,
+.m-winctrl,
+.m-userlist,
+.g-setHd,
+.j-search-body,
+.g-sd-set,
+.g-mn-set,
+.m-playlist,
+.m-card,
+.j-brtlist,
+.prg-spk,
+.m-layer,
+.zcnt,
+.reload-notice {
+    background: none !important;
+}
+
+/* 背景 */
+.j-search-body,
+.m-userlist,
+.m-playlist,
+.m-card,
+.g-singlec-comment-detail,
+.g-singlec-comment-top,
+.j-brtlist,
+.prg-spk,
+.m-layer,
+.zcnt,
+.reload-notice {
+    backdrop-filter: brightness(0.3);
+}
+
+.j-search-body {
+    transition: all .3s;
+    height: 80%;
+}
+
+.m-schsug.f-dn {
+    display: block !important;
+    height: 0 !important;
+    box-shadow: none !important;
+}
+
+.g-singlec-comment-top {
+    transform: translateY(10px) !important;
+}
+
+.g-singlec-comment-detail,
+.g-singlec-comment-top {
+    position: absolute;
+    left: 10px;
+}

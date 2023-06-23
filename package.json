@@ -1,0 +1,23 @@
+{
+  "name": "SimpleTheme",
+  "version": "1.0.0",
+  "description": "一个简单轻量的主题",
+  "main": "index.js",
+  "repository": "https://github.com/BetterNCM/boilerplate",
+  "author": "GuaiJie <guaijieaz@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.29",
+    "@types/react-dom": "^18.0.11",
+    "esbuild": "^0.17.13"
+  },
+  "scripts": {
+    "build:dev": "esbuild ./src/main.ts --bundle --outdir=dist --sourcemap=inline --watch --target=chrome91",
+    "build": "esbuild ./src/main.ts --bundle --minify --outdir=dist --target=chrome91",
+    "analyze": "esbuild --bundle ./src/main.ts --outdir=dist --minify --analyze=verbose"
+  }
+}
