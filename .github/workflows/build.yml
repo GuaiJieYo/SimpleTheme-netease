@@ -19,21 +19,19 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm install
+      run: npm i
 
     - name: Build
       run: npm run build
 
     - name: Rename and Move File
       run: |
-        mkdir packaged_files
-        cp -R dist packaged_files
-        mv packaged_files/dist/SimpleTheme.plugin packaged_files/SimpleTheme.plugin.zip
-        cd packaged_files
-        mv SimpleTheme.plugin.zip SimpleTheme.plugin
+        cd dist
+        tar -cvf SimpleTheme.plugin *
+        
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: SimpleTheme Plugin
-        path: packaged_files/SimpleTheme.plugin
+        path: dist/SimpleTheme.plugin
